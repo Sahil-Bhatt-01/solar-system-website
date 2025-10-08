@@ -1,4 +1,4 @@
-// Gravitational acceleration (m/s²)
+
 const gravity = {
   mercury: 3.7,
   venus: 8.87,
@@ -9,8 +9,6 @@ const gravity = {
   uranus: 8.69,
   neptune: 11.15
 };
-
-// Planet image paths (tumhare "image" folder ke hisaab se)
 const planetImages = {
   mercury: "/image/mercury.png",
   venus: "/image/venus.png",
@@ -33,12 +31,12 @@ function calculateweight() {
 
   if (isNaN(mass) || mass <= 0) {
     resultDiv.style.display = "block";
-    resultDiv.innerHTML = "⚠️ Please enter a valid mass!";
-    planetImage.style.display = "none";
+    resultDiv.innerHTML = " Please enter a valid mass!";
+    planetImage.style.display = "";
     return;
   }
 
-  const weight = (mass * gravity[planet]).toFixed(2);
+  const weight = (mass * gravity[planet]).toFixed(3);
 
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `The weight of the object on <b>${planet.toUpperCase()}</b> is <b>${weight} N</b>`;
@@ -46,4 +44,8 @@ function calculateweight() {
   planetImage.src = planetImages[planet];
   planetImage.classList.add("show");
   planetImage.style.display = "block";
+}
+const calculateButton = document.getElementById("calculateweight"); 
+if (calculateButton) {
+    calculateButton.addEventListener('click', calculateweight);
 }
